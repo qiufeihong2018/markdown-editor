@@ -35,12 +35,12 @@ export default {
         highlight: function (/*str, lang*/) {
           return "";
         },
-      }
+      },
     };
   },
   computed: {
     compiledMarkdown: function () {
-      const md = new Remarkable(this.options)
+      const md = new Remarkable(this.options);
       return md.render(this.input);
     },
   },
