@@ -19,7 +19,8 @@ export default {
 - **得心应手** ：简洁高效的编辑器，提供[桌面客户端][1]以及[离线Chrome App][2]，支持移动端 Web；
 - **深度整合** ：支持选择笔记本和添加标签，支持从印象笔记跳转编辑，轻松管理。
       `,
-      md: new Remarkable({
+      // Remarkable的详细配置
+      options: {
         html: false, // Enable HTML tags in source
         xhtmlOut: false, // Use '/' to close single tags (<br />)
         breaks: false, // Convert '\n' in paragraphs into <br>
@@ -34,12 +35,13 @@ export default {
         highlight: function (/*str, lang*/) {
           return "";
         },
-      }),
+      }
     };
   },
   computed: {
     compiledMarkdown: function () {
-      return this.md.render(this.input);
+      const md = new Remarkable(this.options)
+      return md.render(this.input);
     },
   },
   methods: {
@@ -53,7 +55,6 @@ export default {
 <style>
 html,
 body,
-
 .main-container {
   margin: 0;
   height: 100%;
