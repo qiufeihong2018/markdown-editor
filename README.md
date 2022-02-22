@@ -1,5 +1,10 @@
 # markdown-editor
 
+## Question
+实现简单的markdown editor。解析markdown的部份可用remarkable这个库。
+
+效果如：https://maxiang.io/，在左边打字，右边显示结果
+
 ## Project setup
 ```
 npm install

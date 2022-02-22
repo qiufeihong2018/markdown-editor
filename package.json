@@ -19,6 +19,8 @@
     "@vue/cli-service": "^5.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
+    "lodash": "^4.17.21",
+    "remarkable": "^2.0.1",
     "vue-template-compiler": "^2.6.14"
   },
   "eslintConfig": {
