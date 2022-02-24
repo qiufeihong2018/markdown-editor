@@ -19,6 +19,7 @@ export default {
 - **得心应手** ：简洁高效的编辑器，提供[桌面客户端][1]以及[离线Chrome App][2]，支持移动端 Web；
 - **深度整合** ：支持选择笔记本和添加标签，支持从印象笔记跳转编辑，轻松管理。
       `,
+      compiledMarkdown: "",
       // Remarkable的详细配置
       options: {
         html: false, // Enable HTML tags in source
@@ -38,13 +39,43 @@ export default {
       },
     };
   },
-  computed: {
-    compiledMarkdown: function () {
-      const md = new Remarkable(this.options);
-      return md.render(this.input);
+  watch: {
+    input: {
+      handler(n) {
+        // 缓存markdown原文
+        sessionStorage.setItem("markdownContent", n);
+        const md = new Remarkable(this.options);
+        const result = md.render(n);
+        // 缓存解析后的html内容
+        sessionStorage.setItem("htmlContent", result);
+        this.compiledMarkdown = result;
+      },
     },
   },
+  mounted() {
+    // 读取默认值
+    this.readDefault();
+    // 读取缓存
+    this.readStorage();
+  },
   methods: {
+    readStorage() {
+      const markdownContent = sessionStorage.markdownContent;
+      if (markdownContent) {
+        this.input = markdownContent;
+      }
+      const htmlContent = sessionStorage.htmlContent;
+      if (htmlContent) {
+        this.compiledMarkdown = htmlContent;
+      }
+    },
+    readDefault() {
+      if (this.input) {
+        const md = new Remarkable(this.options);
+        const result = md.render(this.input);
+        this.compiledMarkdown = result;
+      }
+    },
     update: _.debounce(function (e) {
       this.input = e.target.value;
     }, 500),

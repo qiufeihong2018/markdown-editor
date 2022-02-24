@@ -32,6 +32,12 @@ console.log(md.render('# Remarkable rulezz!'));
 // => <h1>Remarkable rulezz!</h1>
 ```
 最后将 remarkable 解析生成的 html 内容用 v-html 生成 dom 元素并展示。
+## 优化
+1. 手写防抖，去掉第三方库lodash
+3. 使用 sessionStorage 实时缓存
+sessionStorage 是个全局对象，它维护着在页面会话(page session)期间有效的存储空间。只要浏览器开着，页面会话周期就会一直持续。当页面重新载入(reload)或者被恢复(restores)时，页面会话也是一直存在的。每在新标签或者新窗口中打开一个新页面，都会初始化一个新的会话。
+
+
 
 ## Project setup
 ```
