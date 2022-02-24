@@ -1,6 +1,6 @@
 <template>
   <div class="main-container">
-    <textarea :value="input" @input="update"></textarea>
+    <textarea  name="text" autofocus="true"  :value="input" @input="update"></textarea>
     <div class="main-container__html" v-html="compiledMarkdown"></div>
   </div>
 </template>
